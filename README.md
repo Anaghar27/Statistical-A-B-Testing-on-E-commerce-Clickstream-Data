@@ -50,6 +50,44 @@ After unzipping, the `data/` folder will contain monthly CSV files such as:
 - The dataset is very large (~30GB per month when unzipped).  
 - Loading the full dataset into memory with Pandas is not practical.  
 - For small-scale experiments, use a subset with the `nrows` option in Pandas.  
-- For full-scale analysis, distributed frameworks such as **PySpark** or **DuckDB** can be used on a local machine.  
+- For full-scale analysis, distributed frameworks such as **PySpark** or **DuckDB** can be used on a local machine.
+
+---
+
+## Step 2: Loading Data with PySpark
+
+Since the dataset is too large for Pandas, **PySpark** is used to process it.  
+- Java and Apache Spark were installed and configured locally on the system.  
+- A PySpark session was started in Jupyter Notebook.  
+- The dataset files (`2019-Oct.csv` and `2019-Nov.csv`) were loaded into a Spark DataFrame.  
+- Schema inspection confirmed columns such as `event_time`, `event_type`, `product_id`, `category_code`, `brand`, `price`, `user_id`, and `user_session`.  
+- The combined dataset had around **110 million rows**.  
+
+---
+
+## Step 3: Data Preprocessing
+
+The preprocessing steps included:  
+1. **Handling Missing Values**  
+   - Filled missing `category_code` and `brand` values with `"unknown"`.  
+   - Dropped rows with missing `price` and `user_session` values.
+
+2. **Filtering Events**  
+   - Only relevant funnel events were retained: **view → cart → purchase**.  
+
+3. **Feature Engineering**  
+   - Extracted `event_date` from the timestamp.  
+   - Randomly assigned each unique user to either **Group A** or **Group B** to simulate an experiment.  
+
+4. **Defining Conversion**  
+   - A user was considered converted if they had at least one purchase event.  
+
+5. **Aggregating Metrics**  
+   - Conversion rates were calculated for Group A and Group B.  
+   - Both groups had nearly identical conversion rates (~13.1%), as expected from random assignment.  
+
+---
+
+
 
 
