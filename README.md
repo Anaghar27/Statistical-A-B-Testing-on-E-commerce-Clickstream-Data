@@ -88,6 +88,25 @@ The preprocessing steps included:
 
 ---
 
+## Step 4: Statistical Hypothesis Testing
 
+After preprocessing and calculating conversion rates for both groups, we performed statistical tests to determine whether the difference between Group A and Group B was significant.
 
+### Hypotheses:
+- Null Hypothesis (H₀): Conversion rates for Group A and Group B are equal.
+- Alternative Hypothesis (H₁): Conversion rates for Group A and Group B are different.
+
+### Tests Performed:
+- Chi-Square Test for Independence
+  - Used a 2×2 contingency table of conversions vs. non-conversions.
+  - Result: p-value ≈ 0.95 → fail to reject H₀.
+
+-Two-Proportion Z-Test
+  - Compared the two conversion proportions directly.
+  - Result: p-value ≈ 0.93 → fail to reject H₀.
+
+### Interpretation:
+- Both tests showed p > 0.05, which means there is no statistically significant difference in conversion rates between Group A (~13.12%) and Group B (~13.18%).
+- This outcome is expected since users were randomly split into groups without any real feature change applied.
+- The analysis validates the experiment setup and statistical testing pipeline. In a real scenario, the same methodology would reveal whether a new feature or product change significantly impacts conversions.
 
