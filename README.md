@@ -1,1 +1,55 @@
-# Statistical-A-B-Testing-on-E-commerce-Clickstream-Data
+# Statistical A/B Testing on E-commerce Clickstream Data
+
+This project applies statistical A/B testing methods to an e-commerce clickstream dataset to measure feature adoption and conversion lift. The dataset contains user-level interactions such as product views, add-to-cart events, and purchases. The goal is to simulate product experiments and evaluate whether new features lead to higher adoption rates.
+
+---
+
+## Step 1: Dataset Setup
+
+This project uses the **E-commerce Behavior Data from Multi-category Store** dataset from Kaggle. Each monthly CSV file is between 5GB and 9GB compressed and expands to 15–30GB when unzipped.
+
+### Step 1A: Enable Kaggle API
+1. Log in to Kaggle and go to your account settings.  
+2. Under the **API** section, click **Create New API Token**.  
+3. A file named `kaggle.json` will be downloaded.  
+4. Place `kaggle.json` inside the `.kaggle` folder in your home directory:  
+   - Mac/Linux: `~/.kaggle/kaggle.json`  
+   - Windows: `C:\Users\<YourName>\.kaggle\kaggle.json`  
+5. On Mac/Linux, set permissions to secure the file:  
+   ```bash
+   chmod 600 ~/.kaggle/kaggle.json
+   ```
+
+### Step 1B: Install Kaggle CLI
+Install the Kaggle command-line tool:
+```bash
+pip install kaggle
+```
+
+Verify installation:
+```bash
+kaggle --version
+```
+
+### Step 1C: Download the Dataset
+Download the dataset using the Kaggle CLI:
+```bash
+kaggle datasets download -d mkechinov/ecommerce-behavior-data-from-multi-category-store
+```
+
+To automatically unzip the dataset into a `data/` folder:
+```bash
+kaggle datasets download -d mkechinov/ecommerce-behavior-data-from-multi-category-store -p data/ --unzip
+```
+
+After unzipping, the `data/` folder will contain monthly CSV files such as:
+- `2019-Oct.csv`  
+- `2019-Nov.csv`  
+
+### Notes on Dataset Size
+- The dataset is very large (~30GB per month when unzipped).  
+- Loading the full dataset into memory with Pandas is not practical.  
+- For small-scale experiments, use a subset with the `nrows` option in Pandas.  
+- For full-scale analysis, distributed frameworks such as **PySpark** or **DuckDB** can be used on a local machine.  
+
+
