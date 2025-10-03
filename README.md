@@ -110,3 +110,42 @@ After preprocessing and calculating conversion rates for both groups, we perform
 - This outcome is expected since users were randomly split into groups without any real feature change applied.
 - The analysis validates the experiment setup and statistical testing pipeline. In a real scenario, the same methodology would reveal whether a new feature or product change significantly impacts conversions.
 
+---
+
+## Step 5: Visualization in Tableau
+
+To better communicate the results of the A/B test, the cleaned and aggregated datasets were exported from PySpark as CSV files:
+- group_summary.csv: aggregated conversions, users, and conversion rates for Group A and Group B.
+- daily_summary.csv:  daily conversion rates for both groups across the test period.
+
+These CSVs were then loaded into Tableau to create the following visualizations:
+- **KPI Cards:** Show total users, total conversions, and overall conversion rate.
+- **Bar Chart (Conversion Rate by Group):** Compare A vs B at an aggregated level.
+- **Line Chart (Daily Conversion Trends):** Display daily fluctuations in conversion rates for A and B.
+
+The charts were combined into a single dashboard to provide an executive summary of the test results.
+
+---
+
+## Step 6: Storytelling and Insights
+
+The Tableau dashboard also included a storytelling section to explain the insights clearly:
+
+**Context:**
+The A/B test was conducted on e-commerce clickstream data to evaluate whether Group B (experimental) achieved higher conversion rates than Group A (control).
+
+**Key Findings:**
+- Group A conversion rate: ~7.75%
+- Group B conversion rate: ~7.71%
+- Both groups performed almost identically, with conversion rates under 8%.
+
+**Statistical Validation:**
+Chi-Square and Two-Proportion Z-Test results showed p > 0.05, confirming no statistically significant difference in conversion performance between the groups.
+
+**Trends:**
+Daily conversion rates fluctuated but followed very similar patterns for both A and B, with no consistent advantage for either group.
+
+**Conclusion:**
+The experimental changes applied to Group B did not produce any measurable uplift in conversions. The test validates the analysis pipeline but indicates that further experiments targeting more specific stages of the funnel (e.g., improving cart-to-purchase completion) may be necessary to drive meaningful improvement.
+
+---
